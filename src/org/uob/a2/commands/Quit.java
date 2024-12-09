@@ -11,6 +11,22 @@ import org.uob.a2.gameobjects.*;
  * </p>
  */
 public class Quit extends Command {
+    public Quit(){
+    }
 
- 
+    public String execute(GameState gameState){
+        Player player = gameState.getPlayer();
+        String result = "Game over:\n";
+        result += "Your current status is:\nPlayer name: "+player.getName()+"\nInventory:\n";
+        for (Item item : player.getInventory()){
+            result+=item.getDescription() + "\n";
+        }
+        result+="\nEquipment:\n";
+        for (Equipment equipment : player.getEquipment()){
+            result+=equipment.getDescription() + "\n";
+        }
+
+        result+="\nYour final score is: " + player.getScore().showScore();
+        return result;
+    }
 }

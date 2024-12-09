@@ -64,6 +64,12 @@ public enum TokenType {
      */
     PREPOSITION,
 
+    RESTART,
+
+    SEARCH,
+
+    COMBINE,
+
     /**
      * Represents the end of a line or command.
      */

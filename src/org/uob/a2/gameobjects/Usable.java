@@ -9,5 +9,7 @@ package org.uob.a2.gameobjects;
  * </p>
  */
 public interface Usable {
-
+    void setUseInformation(UseInformation useInfo);
+    UseInformation getUseInformation();
+    String getName();
 }

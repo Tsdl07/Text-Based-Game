@@ -10,7 +10,61 @@ package org.uob.a2.gameobjects;
  * </p>
  */
 public class UseInformation {
+    private boolean isUsed;
+    private String action;
+    private String target;
+    private String result;
+    private String message;
 
+    public UseInformation(boolean isUsed, String action, String target, String result, String message){
+        this.isUsed = isUsed;
+        this.action = action;
+        this.target = target;
+        this.result = result;
+        this.message = message;
+    }
+
+    public boolean isUsed(){
+        return this.isUsed;
+    }
+
+    public void setUsed(boolean isUsed){
+        this.isUsed = isUsed;
+    }
+
+    public String getAction(){
+        return this.action;
+    }
+
+    public void setAction(String action){
+        this.action = action;
+    }
+
+    public String getTarget(){
+        return this.target;
+    }
+
+    public void setTarget(String target){
+        this.target = target;
+    }
+
+    public String getResult(){
+        return this.result;
+    }
+
+    public void setResult(String result){
+        this.result = result;
+    }
+
+    public String getMessage(){
+        return this.message;
+    }
+
+    public void setMessage(String message){
+        this.message = message;
+    }
+
+    
     /**
      * Returns a string representation of the usage information, including all attributes.
      *

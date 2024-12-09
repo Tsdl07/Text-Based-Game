@@ -1,7 +1,7 @@
 package org.uob.a2.gameobjects;
 
 /**
- * Represents a conatiner in the game, which is a type of feature that may contain items
+ * Represents a container in the game, which is a type of feature that may contain items
  * or serve as an interactable object within a room.
  * 
  * <p>
@@ -10,7 +10,16 @@ package org.uob.a2.gameobjects;
  * </p>
  */
 public class Container extends Feature {
+    public Container(String id, String name, String description, boolean hidden){
+        super(id, name, description, hidden);
+    }
 
+    @Override
+    public String getName(){
+        return this.name;
+    }
+
+    
     
     /**
      * Returns a string representation of the container.
@@ -23,7 +32,7 @@ public class Container extends Feature {
                 "id='" + getId() + '\'' +
                 ", name='" + getName() + '\'' +
                 ", description='" + getDescription() + '\'' +
-                ", hidden=" + isHidden() +
+                ", hidden=" + getHidden() +
                 '}';
     
     }
