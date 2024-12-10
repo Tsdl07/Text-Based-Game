@@ -16,5 +16,4 @@ import org.uob.a2.gameobjects.*;
  */
 public class GameStateFileParser {
 
-   
 }

@@ -7,12 +7,15 @@ map:m1
         equipment:tr1,torch,A flame torch,true,reveal,mt7,e1,Now you can see the whole room!
         item:mt7,match,A fire match,false
         exit:e1,north,A door to the north,r2,true
+        hint: h0,hint,Use torch!,false
+        
 
      room:r2,creepy room,You are in a very creepy room. The whole room is almost covered with cobwebs.,true
         item:b0,blade,A sharp metal blade,false
         item:h1,handle,A wooden handle,false
         exit:e2,south,A door to the south,r1,false
         exit:e3,west,A door to the west,r3,false
+        hint: h1,hint,Don't forget to combine!,false
 
     room:r3,bedroom 2,You are in another bedroom. You feel like the house was abandoned long ago.,true
         container:cl2,closet,A big wooden closet that is locked,false

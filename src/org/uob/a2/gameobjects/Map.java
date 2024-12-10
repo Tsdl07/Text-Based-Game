@@ -22,6 +22,7 @@ public class Map {
         this.rooms = new ArrayList<>();
     }
 
+    //For accessing the rooms in the map:
     public ArrayList<Room> getRooms(){
         return this.rooms;
     }

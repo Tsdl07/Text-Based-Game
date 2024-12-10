@@ -70,6 +70,9 @@ public enum TokenType {
 
     COMBINE,
 
+
+    HINT,
+
     /**
      * Represents the end of a line or command.
      */

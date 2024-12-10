@@ -16,6 +16,9 @@ public class Room extends GameObject {
     private ArrayList<Feature> features;
     private ArrayList<Exit> exits;
     private ArrayList<GameObject> allGameObjects;
+
+    //private ArrayList<Hint> hints; //////////
+    private Hint hint;
     
     public Room(String id, String name, String description, boolean hidden){
         super(id, name, description, hidden);
@@ -24,6 +27,9 @@ public class Room extends GameObject {
         this.features = new ArrayList<>();
         this.exits = new ArrayList<>();
         this.allGameObjects = new ArrayList<>();
+
+        //this.hints = new ArrayList<>();
+        this.hint = null;
     }
 
     public Room(){
@@ -169,6 +175,29 @@ public class Room extends GameObject {
     public ArrayList<GameObject> getAll(){
         return this.allGameObjects;
     }
+
+
+    //////////////////////////////
+    // public ArrayList<Hint> getHints(){
+    //     return this.hints;
+    // }
+
+    // public void addHint(Hint hint){
+    //     this.hints.add(hint);
+    // }
+
+    public void setHint(Hint hint){
+        this.hint = hint;
+    }
+
+    public Hint getHint(){
+        return this.hint;
+    }
+
+    ////////////////////////////////////
+    
+
+    
 
     
     /**

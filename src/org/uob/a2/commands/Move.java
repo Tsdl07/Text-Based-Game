@@ -11,7 +11,7 @@ import org.uob.a2.gameobjects.*;
  * </p>
  */
 public class Move extends Command {
-    private String direction;
+    // private String direction;
 
     public Move(String direction){
         super.commandType = CommandType.valueOf("MOVE");

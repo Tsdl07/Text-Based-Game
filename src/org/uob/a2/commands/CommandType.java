@@ -52,5 +52,7 @@ public enum CommandType {
 
     SEARCH,
 
+    HINTCOMMAND,
+
     COMBINE;
 }
