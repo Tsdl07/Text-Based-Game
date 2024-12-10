@@ -11,7 +11,6 @@ import org.uob.a2.gameobjects.*;
  * </p>
  */
 public class Move extends Command {
-    // private String direction;
 
     public Move(String direction){
         super.commandType = CommandType.valueOf("MOVE");
@@ -26,8 +25,7 @@ public class Move extends Command {
     public String execute(GameState gameState){
         Room currentRoom = gameState.getMap().getCurrentRoom();
         String result = "";
-        
-        String idExit = ""; //???
+        String idExit = "";
         
         for(Exit exit : currentRoom.getExits()){
             if(exit.getName().equals(super.value)){
@@ -42,7 +40,6 @@ public class Move extends Command {
                 result = "Moving towards "+ currentRoom.getExit(idExit).getName()+"\n";
 
                 gameState.getMap().getCurrentRoom().setHidden(false);
-                
             }
             else{
                 result = "No exit found in that direction.";

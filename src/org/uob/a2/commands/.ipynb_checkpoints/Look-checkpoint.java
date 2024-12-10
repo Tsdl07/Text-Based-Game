@@ -65,7 +65,7 @@ public class Look extends Command {
         }
             
         else{
-            result = ""; //Test requires empty result;
+            result = "";
         }
         
         return result;

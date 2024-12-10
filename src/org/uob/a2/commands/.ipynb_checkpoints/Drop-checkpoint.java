@@ -27,6 +27,7 @@ public class Drop extends Command {
         Player player = gameState.getPlayer();
         String result;
         if (player.hasItem(super.value)){
+            
             //Removing the item from the player's inventory:
             Item searchedItem = player.getItem(super.value);
             int indexOfSearchedItem = player.getInventory().indexOf(searchedItem);
@@ -38,6 +39,7 @@ public class Drop extends Command {
             result = "You drop: "+super.value;
         }
         else if(player.hasEquipment(super.value)){
+            
             //Removing the item from the player's inventory:
             Equipment searchedEquipment = player.getEquipment(super.value);
             int indexOfSearchedEquipment = player.getEquipment().indexOf(searchedEquipment);

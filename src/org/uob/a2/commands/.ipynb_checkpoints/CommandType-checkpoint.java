@@ -48,11 +48,23 @@ public enum CommandType {
      */
     QUIT,
 
+    /**
+     * Represents a command to combine two items into an item or equipment in the game (new feature).
+     */
+    COMBINE,
+
+    /**
+     * Represents a command to restart the game (additional command).
+     */
     RESTART,
 
+    /**
+     * Represents a command to search a container for items or equipment in the game (additional command).
+     */
     SEARCH,
 
-    HINTCOMMAND,
-
-    COMBINE;
+    /**
+     * Represents a command to display a hint for the player in the game (additional command).
+     */
+    HINTCOMMAND;
 }

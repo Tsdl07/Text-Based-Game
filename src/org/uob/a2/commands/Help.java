@@ -34,8 +34,9 @@ public class Help extends Command {
             result+="-- USE: Use an item in your inventory (e.g., ’use ruby’ or  ’use medallion on pillar’).\n";
             result+="-- COMBINE: Combine two items into a new equipment (e.g., ’combine stick and rope’).\n";
             result+="-- SEARCH: Search container for an item or equipment (e.g., ’search chest’).\n";
-            result+="-- STATUS: Check your current status, including inventory, your map, or your score.(e.g. ’status player’, ’status inventory’, or ’status map’).\n";
+            result+="-- STATUS: Check your current status, including inventory, your map, or your score.(e.g. ’status player’, ’status inventory’, ’status map’, or ’status score’).\n";
             result+="-- HELP: Display this help information or get help on a specific topic (e.g., ’help look’).\n";
+            result+="-- HINT: Get a hint if you are stuck in a particular room.\n";
             result+="-- RESTART: Restart the game.\n";
             result+="-- QUIT: Exit the game.\n";
             result+="Enjoy the game!";
@@ -76,6 +77,10 @@ public class Help extends Command {
             result+="HELP Command:\n";
             result+="Use the 'display' command to display this help information or get help on a specific topic (e.g., ’help look’).";
         }
+        else if(super.value.equals("hint")){
+            result+="HINT Command:\n";
+            result+="Use the 'hint' command to get a hint if you are stuck in a particular room.";
+        }
         else if(super.value.equals("restart")){
             result+="RESTART Command:\n";
             result+="Use the 'restart' command to restart the game.";
@@ -89,7 +94,4 @@ public class Help extends Command {
         }
         return result;
     }
-    
-
-  
 }
