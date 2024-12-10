@@ -7,8 +7,8 @@ import org.uob.a2.gameobjects.*;
  * about their inventory, specific items, or their overall status.
  * 
  * <p>
- * The status command can display a list of items in the player's inventory, 
- * provide details about a specific item, or show the player's general status.
+ * The status command can display a list of items in the player's inventory, display the map and player's score, 
+ * provide details about a specific item or equipment, or show the player's general status.
  * </p>
  */
 public class Status extends Command {
@@ -39,23 +39,23 @@ public class Status extends Command {
             }
         }
 
-
-            
+        /////// FOR DISPLAYING PLAYER'S SCORE (New Feature):
         else if(super.value.equals("score")){
             result = "Your score is: " +player.getScore().showScore();
         }
 
-
+        /////// FOR DISPLAYING THE MAP (New Feature):
         else if(super.value.equals("map")){
+            String exitString="";
             result = "The rooms you have visited:\n";
             for(Room room : map.getRooms()){
-                if(!room.getHidden()){
-                    String exitString = "";
+                if(!room.getHidden()){ //Checking if the rooms are not hidden, that is the player has visited those rooms.
                     for(Exit exit : room.getExits()){
-                        if(!exit.getHidden()){
+                        if(!exit.getHidden()){ //Checking the visible exits of the room.
                             exitString+=exit.getDescription()+"\n      ";
                         }
                     }
+                    /////DISPLAYING THE MAP (THE VISITED ROOMS, ALONG WITH VISIBLE EXITS):
                     result+="   "+room.getName()+":\n      "+room.getDescription()+"\n      "+exitString +"\n";
                 }
             }
@@ -82,7 +82,7 @@ public class Status extends Command {
         }
 
         else{
-            result = ""; //Test requires empty result;
+            result = "";
         }
         return result;
     }

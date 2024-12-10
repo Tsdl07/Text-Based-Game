@@ -8,6 +8,8 @@ import org.uob.a2.gameobjects.*;
  * <p>
  * The use command checks if the player has the specified equipment and whether it can interact with
  * the target. The target can be a feature, item, or the current room, depending on the game context.
+ *
+ * Each time the player uses an equipment on target, with item, or on its own, the player's score is increased by 10 points.
  * </p>
  */
 public class Use extends Command {
@@ -52,7 +54,7 @@ public class Use extends Command {
                                 equipment.getUseInformation().setUsed(true);
                                 result = equipment.getUseInformation().getMessage();
 
-                                if(currentRoom.getEquipment(equipmentResult)!=null){ ////////FOR THE TESTS (AS THERE IS NO RESULT IN TEST)
+                                if(currentRoom.getEquipment(equipmentResult)!=null){
                                     currentRoom.getEquipment(equipmentResult).setHidden(false);
                                 }
                                 else if(currentRoom.getItem(equipmentResult)!=null){
@@ -64,7 +66,8 @@ public class Use extends Command {
                                 else if(currentRoom.getExit(equipmentResult)!=null){
                                     currentRoom.getExit(equipmentResult).setHidden(false);
                                 }
-                                
+
+                                //Each time the player uses an equipment on target, the player's score is increased by 10 points:
                                 player.getScore().addScore(10);
                                 return result;
                             }
@@ -76,7 +79,7 @@ public class Use extends Command {
                         equipment.getUseInformation().setUsed(true);
                         result = equipment.getUseInformation().getMessage();
 
-                        if(currentRoom.getEquipment(equipmentResult)!=null){ ////////FOR THE TESTS (AS THERE IS NO RESULT IN TEST)
+                        if(currentRoom.getEquipment(equipmentResult)!=null){
                             currentRoom.getEquipment(equipmentResult).setHidden(false);
                         }
                         else if(currentRoom.getItem(equipmentResult)!=null){
@@ -88,7 +91,8 @@ public class Use extends Command {
                         else if(currentRoom.getExit(equipmentResult)!=null){
                             currentRoom.getExit(equipmentResult).setHidden(false);
                         }
-                            
+
+                        //Each time the player uses an equipment with item, the player's score is increased by 10 points:
                         player.getScore().addScore(10);
                         return result;
                     }
@@ -98,46 +102,37 @@ public class Use extends Command {
                 
 
                 else{
-                    //for(GameObject gameObject : currentRoom.getAll()){
-                        //if(equipment.getUseInformation().getResult().equals(gameObject.getId())){
-
-                        if(target.equals(currentRoom.getId())){
-                            if(currentRoom.getExit(equipmentResult)!=null){  //CHECKING IF THE RESULT IF EXITS (it may be other feature);
-                                currentRoom.getExit(equipmentResult).setHidden(false);    
-                            }
-                            else if(currentRoom.getFeature(equipmentResult)!=null){
-                                currentRoom.getFeature(equipmentResult).setHidden(false);   
-                            }
-                            else if(currentRoom.getItem(equipmentResult)!=null){
-                                currentRoom.getItem(equipmentResult).setHidden(false);  
-                            }
-                            else if(currentRoom.getEquipment(equipmentResult)!=null){
-                                currentRoom.getEquipment(equipmentResult).setHidden(false);  
-                            }
-                            
-                            equipment.getUseInformation().setUsed(true);
-                            result = equipment.getUseInformation().getMessage();
-                        
-                            player.getScore().addScore(10);
-                            return result;
+                    if(target.equals(currentRoom.getId())){
+                        if(currentRoom.getExit(equipmentResult)!=null){
+                            currentRoom.getExit(equipmentResult).setHidden(false);    
                         }
-                                
-                        //}
-                    //}
-                        result="Wrong implementation of USE command.";
-                }
-                
+                        else if(currentRoom.getFeature(equipmentResult)!=null){
+                            currentRoom.getFeature(equipmentResult).setHidden(false);   
+                        }
+                        else if(currentRoom.getItem(equipmentResult)!=null){
+                            currentRoom.getItem(equipmentResult).setHidden(false);  
+                        }
+                        else if(currentRoom.getEquipment(equipmentResult)!=null){
+                            currentRoom.getEquipment(equipmentResult).setHidden(false);  
+                        }
+                            
+                        equipment.getUseInformation().setUsed(true);
+                        result = equipment.getUseInformation().getMessage();
 
+                        //Each time the player uses an equipment on its own, the player's score is increased by 10 points:
+                        player.getScore().addScore(10);
+                        return result;
+                    }
+                    result="Wrong implementation of USE command.";
+                }
             }
             else{
                 result = "You have already used "+equipmentName;
             }
-            
         }
         else{
             result = "You do not have "+equipmentName;
         }
-
         return result;
     }
   
