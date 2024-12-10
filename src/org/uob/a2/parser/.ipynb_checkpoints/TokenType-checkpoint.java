@@ -60,18 +60,29 @@ public enum TokenType {
     MOVE,
 
     /**
+     * Represents the "combine" command.
+     */
+    COMBINE,
+
+    /**
+     * Represents the "restart" command.
+     */
+    RESTART,
+
+    /**
+     * Represents the "hint" command.
+     */
+    HINT,
+    
+    /**
+     * Represents the "search" command.
+     */
+    SEARCH,
+    
+    /**
      * Represents a preposition such as "on", "with", or "using".
      */
     PREPOSITION,
-
-    RESTART,
-
-    SEARCH,
-
-    COMBINE,
-
-
-    HINT,
 
     /**
      * Represents the end of a line or command.

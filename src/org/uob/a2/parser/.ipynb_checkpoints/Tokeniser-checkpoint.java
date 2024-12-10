@@ -21,7 +21,7 @@ public class Tokeniser {
         return this.tokens;
     }
 
-    public String sanitise(String s){ //For middle spaces as well???
+    public String sanitise(String s){
         String lowerS = s.toLowerCase();
         String result = lowerS.trim();
         return result;
@@ -157,55 +157,38 @@ public class Tokeniser {
                 tokens.add(quit);
             }
 
+            //////////////////////// TOKENISING RESTART COMMAND (Additional command):    
             else if(tokenString[i].equals("restart")){
                 Token restart = new Token(TokenType.RESTART);
                 tokens.add(restart);
             }
+            /////////////////////////////
 
-            /////////////////////////////////////////////
-            // else if(tokenString[i].equals("hint")){
-            //     if(tokenString.length==(i+2)){
-            //         Token hintName = new Token(TokenType.VAR, tokenString[i+1]);
-            //         Token hint = new Token(TokenType.HINT);
-                    
-            //         tokens.add(hint);
-            //         tokens.add(hintName);
-            //     }
-            //     else{
-            //         Token hint = new Token(TokenType.HINT);
-            //         tokens.add(hint);
-            //     }
-
-            //     break;
-            // }
-
+            //////////////////////// TOKENISING HINT COMMAND (Additional command):
             else if(tokenString[i].equals("hint")){
                 Token hint = new Token(TokenType.HINT);
                 tokens.add(hint);
             }
             
             ///////////////////////////////////////
-            
+
+            //////////////////////// TOKENISING SEARCH COMMAND (Additional command):
             else if(tokenString[i].equals("search")){
-                if(tokenString.length==(i+2)){
+                if(tokenString.length==(i+2)){ //Checking whether the user has entered 2 words as input.
                     Token container = new Token(TokenType.VAR, tokenString[i+1]);
                     Token search = new Token(TokenType.SEARCH);
                     
                     tokens.add(search);
                     tokens.add(container);
                 }
-                else{
+                else{ //If the user enters invalid number of words for search command, returning only SEARCH token and throwing exception in parser.
                     Token status = new Token(TokenType.SEARCH);
                     tokens.add(status);
                 }
 
                 break;
             }
-
-            // else if(tokenString[i].equals("error")){
-            //     Token status = new Token(TokenType.STATUS);
-            //     tokens.add(status);
-            // }
+            ////////////////////////////////////////
             
             else if(tokenString[i].equals("move")){
                 if(tokenString.length==(i+2)){
@@ -224,8 +207,9 @@ public class Tokeniser {
                 
             }
 
+            //////////////////////// TOKENISING COMBINE COMMAND (New feature):
             else if(tokenString[i].equals("combine")){
-                if(tokenString.length==(i+4)){
+                if(tokenString.length==(i+4) && tokenString[i+2].equals("and")){ //Checking whether the user has entered 4 words as input, including the preposition "and".
                     Token item1 = new Token(TokenType.VAR, tokenString[i+1]);
                     Token preposition = new Token(TokenType.PREPOSITION, tokenString[i+2]);
                     Token item2 = new Token(TokenType.VAR, tokenString[i+3]);
@@ -236,13 +220,13 @@ public class Tokeniser {
                     tokens.add(preposition);
                     tokens.add(item2);
                 }
-                else{
+                else{ //If the user enters invalid number of words for combine command or wrong preposition, returning only COMBINE token and throwing exception in parser.
                     Token combine = new Token(TokenType.COMBINE);
                     tokens.add(combine);
                 }
-
                 break;
             }
+            /////////////////////////////////////////////////////
 
             else{
                 Token unknown = new Token(TokenType.VAR, tokenString[i]);

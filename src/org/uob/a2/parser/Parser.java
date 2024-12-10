@@ -21,7 +21,6 @@ public class Parser {
         
         Command command = null;
 
-        
             for(Token token : tokens){
                 if(token.getTokenType()==TokenType.MOVE){
                     for(Token tokenValue : tokens){
@@ -34,7 +33,6 @@ public class Parser {
                 }
 
                 else if(token.getTokenType()==TokenType.LOOK){
-
                     for(Token tokenValue : tokens){
                         if(tokenValue.getTokenType()==TokenType.VAR){
                             command = new Look(tokenValue.getValue());
@@ -106,7 +104,6 @@ public class Parser {
                         }
 
                         for(Token tokenValue2 : tokens){
-                            
                             if(tokenValue2.getTokenType()==TokenType.VAR && !tokenValue2.getValue().equals(equipment)){
                                 String target = tokenValue2.getValue();
                                 command = new Use(equipment, preposition+" "+target);
@@ -121,7 +118,6 @@ public class Parser {
                             }
                         }
                     
-
                     throw new CommandErrorException("Invalid usage of USE command!");
                 }
 
@@ -134,37 +130,31 @@ public class Parser {
                     
                 }
 
-                ////////////////////////////////////////////////
-                // else if(token.getTokenType()==TokenType.HINT){
-                //     for(Token tokenValue : tokens){
-                //         if(tokenValue.getTokenType()==TokenType.VAR){
-                //             command = new HintCommand(tokenValue.getValue());
-                //             return command;
-                //         }
-                //     }
-                //     throw new CommandErrorException("Invalid usage of HINT command!");
-                // }
-
+                /////////////////////////////////////// PARSING HINT TOKEN (Additional Command):
                 else if(token.getTokenType()==TokenType.HINT){
+                    //As the user should only enter HINT: the size of arraylist should be 2 (HINT token, EOL token):
                     if(tokens.size()==2){
                         command = new HintCommand();
                         return command;
                     }
                     throw new CommandErrorException("Invalid usage of HINT command!");
-                    
                 }
                 //////////////////////////////////////////////
-                    
+
+                /////////////////////////////////////// PARSING RESTART TOKEN (Additional Command):
                 else if(token.getTokenType()==TokenType.RESTART){
+                    //As the user should only enter RESTART: the size of arraylist should be 2 (RESTART token, EOL token):
                     if(tokens.size()==2){
                         command = new Restart();
                         return command;
                     }
                     throw new CommandErrorException("Invalid usage of RESTART command!");
-                    
                 }
+                ///////////////////////////////////////
 
+                /////////////////////////////////////// PARSING SEARCH TOKEN (Additional Command):
                 else if(token.getTokenType()==TokenType.SEARCH){
+                    //As the user should enter SEARCH <containerName>:
                     for(Token tokenValue : tokens){
                         if(tokenValue.getTokenType()==TokenType.VAR){
                             command = new Search(tokenValue.getValue());
@@ -173,16 +163,21 @@ public class Parser {
                     }
                     throw new CommandErrorException("Invalid usage of SEARCH command!");
                 }
+                //////////////////////////////////////////
+                    
 
+                /////////////////////////////////////// PARSING COMBINE TOKEN (New Feature):
                 else if(token.getTokenType()==TokenType.COMBINE){
                     String item1 = "";
-                    
+
+                    //Accessing the first item for combination:
                     for(Token tokenValue : tokens){
                         if(tokenValue.getTokenType()==TokenType.VAR){
                             item1 = tokenValue.getValue();
                         }
                     }
 
+                    //Accessing the second item for combination:
                     for(Token tokenValue2 : tokens){
                         if(tokenValue2.getTokenType()==TokenType.VAR && !tokenValue2.getValue().equals(item1)){
                             String item2 = tokenValue2.getValue();
@@ -193,15 +188,13 @@ public class Parser {
                     
                     throw new CommandErrorException("Invalid usage of COMBINE command!");
                 }
+                //////////////////////////////////////////
 
                 else{
                     throw new CommandErrorException("You have entered invalid command!");
                 }
-
                 
             }
             return command;
-
     }
- 
 }
