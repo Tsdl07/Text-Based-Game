@@ -17,7 +17,7 @@ public class Room extends GameObject {
     private ArrayList<Exit> exits;
     private ArrayList<GameObject> allGameObjects;
 
-    //private ArrayList<Hint> hints; //////////
+    //For storing a hint for the player in the particular room:
     private Hint hint;
     
     public Room(String id, String name, String description, boolean hidden){
@@ -28,7 +28,7 @@ public class Room extends GameObject {
         this.exits = new ArrayList<>();
         this.allGameObjects = new ArrayList<>();
 
-        //this.hints = new ArrayList<>();
+        //Initially, setting up the hint for the player to null:
         this.hint = null;
     }
 
@@ -177,19 +177,14 @@ public class Room extends GameObject {
     }
 
 
-    //////////////////////////////
-    // public ArrayList<Hint> getHints(){
-    //     return this.hints;
-    // }
+    //////////////////////////////  HINT
 
-    // public void addHint(Hint hint){
-    //     this.hints.add(hint);
-    // }
-
+    //For adding a hint to a particular room (useful while reading the file):
     public void setHint(Hint hint){
         this.hint = hint;
     }
 
+    //For getting the hint from the room to display during the game:
     public Hint getHint(){
         return this.hint;
     }

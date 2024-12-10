@@ -15,6 +15,7 @@ public class Player {
     private ArrayList<Item> inventory;
     private ArrayList<Equipment> equipment;
 
+    //For storing the score of the player:
     private Score score;
     
     public Player(String name){
@@ -22,7 +23,7 @@ public class Player {
         this.inventory = new ArrayList<>();
         this.equipment = new ArrayList<>();
 
-        //Setting up the initial score of the player:
+        //Setting up the initial score of the player to 0:
         score = new Score(0);
     }
 
