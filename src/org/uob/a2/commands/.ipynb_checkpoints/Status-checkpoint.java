@@ -46,10 +46,10 @@ public class Status extends Command {
 
         /////// FOR DISPLAYING THE MAP (New Feature):
         else if(super.value.equals("map")){
-            String exitString="";
             result = "The rooms you have visited:\n";
             for(Room room : map.getRooms()){
                 if(!room.getHidden()){ //Checking if the rooms are not hidden, that is the player has visited those rooms.
+                    String exitString="";
                     for(Exit exit : room.getExits()){
                         if(!exit.getHidden()){ //Checking the visible exits of the room.
                             exitString+=exit.getDescription()+"\n      ";

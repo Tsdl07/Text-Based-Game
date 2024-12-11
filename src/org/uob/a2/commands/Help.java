@@ -25,7 +25,7 @@ public class Help extends Command {
 
     public String execute(GameState gameState){
         String result = "";
-        if(super.value==null){ //Tests require null.
+        if(super.value==null){
             result = "Welcome to the game! Here is the list of useful commands throughout the game:\n";
             result+="-- MOVE: Move to a different location (e.g., ’move north’, ’move south’, ’move up’, or ’move down’).\n";
             result+="-- LOOK: Look around the current room or inspect an object.\n";
