@@ -42,16 +42,12 @@ public class GameStateFileParser {
                      player = new Player(name);
                 }
                 else if(line.contains("map:")){
-                     // int indexOfColonMap = line.indexOf(":");
-                     // currentRoomId = line.substring(indexOfColonMap+1);
                      map = new Map();
-                     //map.setCurrentRoom(currentRoomId);
                 }
                 else if(line.contains("room:")){
                     indexOfColon = line.indexOf(":");
                     roomInfo = line.substring(indexOfColon+1).split(",");
                     room = new Room(roomInfo[0], roomInfo[1], roomInfo[2], Boolean.parseBoolean(roomInfo[3]));
-                    //map = new Map();
                     map.addRoom(room);
                     if(firstRoom){
                         map.setCurrentRoom(room.getId());
@@ -63,49 +59,55 @@ public class GameStateFileParser {
                     indexOfColon = line.indexOf(":");
                     objectInfo = line.substring(indexOfColon+1).split(",");
                     Container container = new Container(objectInfo[0], objectInfo[1], objectInfo[2], Boolean.parseBoolean(objectInfo[3]));
-                    room.addFeature(container);
+                    if(room!=null){
+                        room.addFeature(container);
+                    }
                 }
                 else if(line.contains("equipment:")){
                     indexOfColon = line.indexOf(":");
                     objectInfo = line.substring(indexOfColon+1).split(",");
                     UseInformation useInformation = new UseInformation(false, objectInfo[4], objectInfo[5], objectInfo[6], objectInfo[7]);
                     Equipment equipment = new Equipment(objectInfo[0], objectInfo[1], objectInfo[2], Boolean.parseBoolean(objectInfo[3]), useInformation);
-                    room.addEquipment(equipment);
+                    if(room!=null){
+                        room.addEquipment(equipment);
+                    }
+                    
                 }
                 else if(line.contains("item:")){
                     indexOfColon = line.indexOf(":");
                     objectInfo = line.substring(indexOfColon+1).split(",");
                     Item item = new Item(objectInfo[0], objectInfo[1], objectInfo[2], Boolean.parseBoolean(objectInfo[3]));
-                    room.addItem(item);
+                    if(room!=null){
+                        room.addItem(item);
+                    }
                 }
                 else if(line.contains("feature:")){
                     indexOfColon = line.indexOf(":");
                     objectInfo = line.substring(indexOfColon+1).split(",");
                     Feature feature = new Feature(objectInfo[0], objectInfo[1], objectInfo[2], Boolean.parseBoolean(objectInfo[3]));
-                    room.addFeature(feature);
+                    if(room!=null){
+                        room.addFeature(feature);
+                    }
                 }
                 else if(line.contains("exit:")){
                     indexOfColon = line.indexOf(":");
                     objectInfo = line.substring(indexOfColon+1).split(",");
                     Exit exit = new Exit(objectInfo[0], objectInfo[1], objectInfo[2], objectInfo[3], Boolean.parseBoolean(objectInfo[4]));
-                    room.addExit(exit);
+                    if(room!=null){
+                        room.addExit(exit);
+                    }
                 }
 
-                ///////////////////////////
-                // else if(line.contains("hint:")){
-                //     indexOfColon = line.indexOf(":");
-                //     objectInfo = line.substring(indexOfColon+1).split(",");
-                //     Hint hint = new Hint(objectInfo[0], objectInfo[1], objectInfo[2], Boolean.parseBoolean(objectInfo[3]));
-                //     room.addHint(hint);
-                // }
-
+                /////////////////////////// READING HINT from the game.txt file and setting hint to the room:
                 else if(line.contains("hint:")){
                     indexOfColon = line.indexOf(":");
                     objectInfo = line.substring(indexOfColon+1).split(",");
                     Hint hint = new Hint(objectInfo[0], objectInfo[1], objectInfo[2], Boolean.parseBoolean(objectInfo[3]));
-                    room.setHint(hint);
+                    if(room!=null){
+                        room.setHint(hint);
+                    }
                 }
-                /////////////////////////////
+                ///////////////////////////////
             }
 
             GameState gameState = new GameState(map, player);
@@ -117,10 +119,6 @@ public class GameStateFileParser {
         catch(Exception e){
             GameState gameState = null;
             return gameState;
-        }
-        
-    
-            
+        }    
     }
-   
 }
